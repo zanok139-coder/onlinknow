@@ -1,0 +1,71 @@
+{
+  "name": "Book",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "cover_url": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "published_year": {
+      "type": "string"
+    },
+    "read_minutes": {
+      "type": "number"
+    },
+    "total_chapters": {
+      "type": "number"
+    },
+    "views": {
+      "type": "number"
+    },
+    "is_featured": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "published",
+        "draft"
+      ],
+      "default": "published"
+    },
+    "source_file_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

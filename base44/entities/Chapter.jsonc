@@ -1,0 +1,45 @@
+{
+  "name": "Chapter",
+  "type": "object",
+  "properties": {
+    "book_id": {
+      "type": "string"
+    },
+    "number": {
+      "type": "number"
+    },
+    "title": {
+      "type": "string"
+    },
+    "paragraphs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "word_count": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "book_id"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
