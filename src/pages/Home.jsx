@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 import HomeFaq from "@/components/home/HomeFaq";
 import Seo from "@/components/seo/Seo";
 import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
-
+import { localBooks } from "@/lib/localBook";
 const HOME_SEO = {
   title: "Onlink Library - Free Spiritual Library | 50+ Classics | onlinknow.co.za",
   description:
@@ -133,13 +133,15 @@ export default function Home() {
   useEffect(() => {
     let active = true;
     Promise.all([
-    base44.entities.Book.filter({ status: "published" }, { sort: "-created_date", limit: 100 }),
-    base44.entities.Book.count({ status: "published" })]
+    .entities.Book.filter({ status: "published" }, { sort: "-created_date", limit: 100 }),
+    .entities.Book.count({ status: "published" })]
     ).
-    then(([page, count]) => {
-      if (!active) return;
-      setBooks(page.items || []);
-      setTotal(count || 0);
+    .then(({page, count}) => {
+  if (!active) return;
+  const items = page.items && page.items.length ? page.items : localBooks;
+  setBooks(items);
+  setTotal(items.length);
+})
     }).
     finally(() => {
       if (active) setLoading(false);
